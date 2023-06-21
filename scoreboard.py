@@ -2,7 +2,10 @@ from turtle import Turtle
 
 class Score:
     points=-1
-    high_score=0
+    file=open("savefile.txt")
+    content=file.read()
+    file.close()
+    high_score=int(content)
     scoreboard=Turtle() 
     def __init__(self):
 
@@ -20,7 +23,11 @@ class Score:
 
     def reset(self):
         if(self.points>self.high_score):
+            newfile=open("savefile.txt",mode="w")
+            newfile.write(str(self.points))
             self.high_score=self.points
+            newfile.close()
+
         self.points=-1
         self.update()
           
